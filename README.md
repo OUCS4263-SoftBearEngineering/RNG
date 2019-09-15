@@ -72,6 +72,34 @@ Serving Flask app "server" (lazy loading)
 Our working version of the site accessable to anyone.  http://34.69.126.180/  if there are any issues during the setup process, this link should show we have infact made a working version of the site as requested.
 
 ## VM with Java Guide - Tim Gehrsitz
+1. Go to GCP and create a new VM instance in compute engine
+2. Allow https and http traffic
+3. Open up the SSH
+4. Run the following commands to install apache tomcat:
+    *  cd ../..
+    *  mkdir tomcat
+    *  sudo apt-get install default-jdk
+    *  cd /tomcat/
+    *  sudo wget http://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.45/bin/apache-tomcat-8.5.45.zip
+    *  sudo apt-get install unzip
+    *  sudo unzip apache-tomcat-8.5.45.zip
+    *  cd /tomcat/apache-tomcat-8.5.45/bin/
+    *  chmod 700 /tomcat/apache-tomcat-8.5.45/bin/*.sh
+    *  ln -s /tomcat/apache-tomcat-8.5.45/bin/startup.sh /usr/bin/tomcatup
+    *  ln -s /tomcat/apache-tomcat-8.5.45/bin/shutdown.sh /usr/bin/tomcatdown
+    *  tomcatup
+5. Create a directory within tomcat/apahce-tomcat-8.5.45/webapps with the name "RNG-page"
+6. Create a directory within that called WEB-INF, a directory called src, and an index.html
+7. In src, create a .java file with the necessary code (found in this git)
+8. In WEB-INF, create a directory called classes
+9. Go back to the src directory and type the following command:
+    <pre><code> javac -cp .:../../../lib/servlet-api.jar -d ../WEB-INF/classes (yourJavaName).java </code></pre>
+10. Navigate to WEB-INF/classes and you should see "(yourJavaName).class"
+11. in WEB-INF create web.xml
+12. Create servlet tags and servlet-mapping tags as showin in this git
+13. Navigate to http://(your.vm.ip):8080/RNG-page/(your servlet url-pattern) and see the random number in the top left
+
+Our working version is accessable here: http://104.155.180.57:8080/RNG-page/rng
 
 ## Tests - Hope Anderson
 To runs tests from terminal within directory containing test file, type 
