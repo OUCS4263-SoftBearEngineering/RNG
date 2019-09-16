@@ -9,6 +9,8 @@ Random number generator practice project for taking requirements.
 - Tim Gehrsitz
 
 ## GCP with Python Guide - Blake Gerard
+[View](https://cs4263-rngproject.appspot.com/)
+
 1. Download the files in the "GCP_Python" directory to your local machine.
 2. Within your selected GCP Project, go to the App Engine dashboard and start a new service.
 3. Navigate to the "Storage >> Browser" in GCP and select the App Engine service created in step 2.
