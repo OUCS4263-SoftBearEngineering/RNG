@@ -1,0 +1,18 @@
+SoftBear Engineering:
+  us-east:
+    JavaGCP:
+      server: http://javaproject0-251917.appspot.com
+      time: '0:00:00.037359'
+      random_number: 
+    JavaVM:
+      server: http://104.155.180.57:8080/RNG-page/rng
+      time: '0:00:00.080217'
+      random_number: 
+    PythonGCP:
+      server: http://cs4263-rngproject.appspot.com
+      time: '0:00:00.057165'
+      random_number: 
+    PythonVM:
+      server: http://34.69.126.180
+      time: '0:00:00.059727'
+      random_number: 

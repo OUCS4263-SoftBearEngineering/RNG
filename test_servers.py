@@ -1,41 +1,27 @@
 import requests
 import unittest
+import yaml
+from datetime import datetime
 
-def generate_1000_nums(server):
-    uniques = []
-    for _ in range(1000):
-        num = requests.get(server)
-        if num not in uniques:
-            uniques.append(num)
-    return len(uniques) >= 750
-
-class TestRandomness(unittest.TestCase):
+class TestResponseTime(unittest.TestCase):
     """
-    Ensures 750/1000 numbers are unique 10 times
+    Outputs response time for single request for each server
     """
-    def test_randomness_python_cloud_server(self):
-        print("Testing python cloud server:")
-        for i in range(10):
-            self.assertTrue(generate_1000_nums("http://cs4263-rngproject.appspot.com"))
-            print("\tTest", i+1, "of 10 passed!")
+    def test_response_time(self):
+        with open("test.yaml", "r") as f:
+            data = yaml.load(f, Loader=yaml.FullLoader)
 
-    def test_randomness_java_cloud_server(self):
-        print("Testing Java cloud server:")
-        for i in range(10):
-            self.assertTrue(generate_1000_nums("http://javaproject0-251917.appspot.com"))
-            print("\tTest", i+1, "of 10 passed!")
+            for group in data.values():
+                for region in group.values():
+                    for server_data in region.values():
+                        print(server_data.get('server'))
+                        num = requests.get(server_data.get('server'))
+                        server_data['time'] = str(num.elapsed)
+                        server_data['random_number'] = num
 
-    def test_randomness_python_VM_server(self):
-        print("Testing python VM server:")
-        for i in range(10):
-            self.assertTrue(generate_1000_nums("http://34.67.84.130"))
-            print("\tTest", i+1, "of 10 passed!")
-
-    def test_randomness_java_VM_server(self):
-        print("Testing Java VM server:")
-        for i in range(10):
-            self.assertTrue(generate_1000_nums("http://104.155.180.57:8080/RNG-page/rng"))
-            print("\tTest ", i, " of 10 passed!")
+        with open("test.yaml", "w") as f:
+            yaml.dump(data, f, default_flow_style=False)
+                        
 
 if __name__ == '__main__':
     unittest.main()
