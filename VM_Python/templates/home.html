@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>What Episode should I watch?</title>
+		<link rel="stylesheet" href= "{{ url_for('static',filename='css/main.css')}}">
+	</head>
+	<body>
+		<h1>Season: {{sz}} Episode: {{ep}}</h1>
+		<h2>{{epName}}</h2>
+		<img class = "center"  src="{{ epPic }}" alt ="{{ epPic }}">
+	</body>
+</html>
+
+
